@@ -4,9 +4,9 @@ using Avalonia.Markup.Xaml;
 
 namespace MusicPlayer.Views;
 
-public partial class MusicStoreWindow : Window
+public partial class AlbumView : UserControl
 {
-    public MusicStoreWindow()
+    public AlbumView()
     {
         InitializeComponent();
     }
