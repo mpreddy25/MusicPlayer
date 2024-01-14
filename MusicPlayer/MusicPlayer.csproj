@@ -11,7 +11,15 @@
   </ItemGroup>
   
   <ItemGroup>
+    <None Remove="Songs\[iSongs.info] 01 - Alanati Ramachandrudu.mp3" />
+  </ItemGroup>
+  
+  <ItemGroup>
     <AvaloniaResource Include="Icons.axaml" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <EmbeddedResource Include="Songs\[iSongs.info] 01 - Alanati Ramachandrudu.mp3" />
   </ItemGroup>
 
   <ItemGroup>

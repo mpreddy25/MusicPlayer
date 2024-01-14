@@ -17,16 +17,16 @@ namespace MusicPlayer
         {
             if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
             {
-                desktop.MainWindow = new MainWindow
+                desktop.MainWindow = new PlayListWindow
                 {
-                    DataContext = new MainViewModel()
+                    DataContext = new PlayListWindowViewModel()
                 };
             }
             else if (ApplicationLifetime is ISingleViewApplicationLifetime singleViewPlatform)
             {
-                singleViewPlatform.MainView = new MainView
+                singleViewPlatform.MainView = new PlayListWindow
                 {
-                    DataContext = new MainViewModel()
+                    DataContext = new PlayListWindowViewModel()
                 };
             }
 
