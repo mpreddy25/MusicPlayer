@@ -26,8 +26,9 @@
       <!--<TextBlock Text="M P Reddy" />-->
       <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom">
         <!--<Button Content="Previous"  />-->
-        <Button Content="Play" Command="{Binding PlayCommand}"/>
-        <Button Content="Pause" Command="{Binding PauseCommand}" />
+        <Button Content="{Binding IsPlaying, Converter={StaticResource PlayPauseConverter}}"
+                Command="{Binding TogglePlayPauseCommand}" />
+        <!--<Button Content="Pause" Command="{Binding PauseCommand}" />-->
         <Button Content="Next" Command="{Binding NextCommand}"/>
         <!--<Button Content="Songs List"  />-->
       </StackPanel>

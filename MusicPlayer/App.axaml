@@ -1,6 +1,7 @@
 <Application xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="using:MusicPlayer"
+             xmlns:converters="clr-namespace:MusicPlayer.Common.Converters;assembly=MusicPlayer"
              x:Class="MusicPlayer.App"
              RequestedThemeVariant="Dark">
              <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
@@ -13,4 +14,11 @@
         <FluentTheme />
       <StyleInclude Source="avares://MusicPlayer/Icons.axaml" />
     </Application.Styles>
+
+  <Application.Resources>
+    <ResourceDictionary>
+      <converters:PlayPauseConverter x:Key="PlayPauseConverter"/>
+      <!-- Add other resources here if needed -->
+    </ResourceDictionary>
+  </Application.Resources>
 </Application>

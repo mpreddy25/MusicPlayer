@@ -20,12 +20,12 @@
   </ItemGroup>
   
   <ItemGroup>
-    <AvaloniaResource Include="Songs\[iSongs.info] 01 - Alanati Ramachandrudu.mp3">
+    <EmbeddedResource Include="Songs\[iSongs.info] 01 - Alanati Ramachandrudu.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </AvaloniaResource>
-    <AvaloniaResource Include="Songs\[iSongs.info] 09 - Priyathama.mp3">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Songs\[iSongs.info] 09 - Priyathama.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </AvaloniaResource>
+    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>

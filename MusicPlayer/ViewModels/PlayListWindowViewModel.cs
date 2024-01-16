@@ -27,6 +27,7 @@ namespace MusicPlayer.ViewModels
         private MediaPlayer _mediaPlayer;
         private ObservableCollection<string> _songs;
         private int _currentSongIndex;
+        private bool _isPlaying;
 
         public ObservableCollection<string> Songs
         {
@@ -34,11 +35,16 @@ namespace MusicPlayer.ViewModels
             set => this.RaiseAndSetIfChanged(ref _songs, value);
         }
 
+        public bool IsPlaying
+        {
+            get => _isPlaying;
+            set => this.RaiseAndSetIfChanged(ref _isPlaying, value);
+        }
+
         //private MediaPlayer _mediaPlayer;
 
         public ICommand PreviousCommand { get; }
-        public ICommand PlayCommand { get; }
-        public ICommand PauseCommand { get; }
+        public ICommand TogglePlayPauseCommand { get; }
         public ICommand NextCommand { get; }
         public ICommand ShowSongsListCommand { get; }
 
@@ -46,23 +52,13 @@ namespace MusicPlayer.ViewModels
         {
             libvlc = new LibVLC();
             _mediaPlayer = new MediaPlayer(libvlc);
-
+            _mediaPlayer.EndReached += OnMediaEnded;
             _songs = new ObservableCollection<string>();
 
             // Get the path to the app's data directory on Android
             string directory;
 
             directory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), "Songs");
-            //// Check if running on Android
-            //if (AvaloniaLocator.Current.GetService<RuntimePlatform>() == RuntimePlatform.Android)
-            //{
-            //    directory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), "Songs");
-            //}
-            //else
-            //{
-            //    // For other platforms, use the original path
-            //    directory = Path.Combine(AppContext.BaseDirectory, "Songs");
-            //}
 
             // Get the names of embedded resources (assuming they are in the root namespace)
             var resourceNames = typeof(PlayListWindowViewModel).Assembly.GetManifestResourceNames();
@@ -76,11 +72,14 @@ namespace MusicPlayer.ViewModels
             var songs = GetSongsFromResources(songsResourceNames);
             _songs.AddRange(songs);
 
-            PlayCommand = ReactiveCommand.Create(Play);
-            PauseCommand = ReactiveCommand.Create(Pause);
-            //PreviousCommand = ReactiveCommand.Create(Previous);
-            NextCommand = ReactiveCommand.Create(Next);
-            //PlayCommand = ReactiveCommand.Create(Play);
+            TogglePlayPauseCommand = ReactiveCommand.Create(TogglePlayPause);
+            NextCommand = ReactiveCommand.Create(NextSong);
+        }
+
+        private void OnMediaEnded(object sender, EventArgs e)
+        {
+            // When the media playback reaches the end, automatically play the next song
+            NextSong();
         }
 
         private IEnumerable<string> GetSongsFromResources(List<string> resourceNames)
@@ -110,13 +109,29 @@ namespace MusicPlayer.ViewModels
 
         public string CurrentSong => _songs.ElementAtOrDefault(_currentSongIndex);
 
-        public void Play()
+        public void TogglePlayPause()
         {
             if (string.IsNullOrEmpty(CurrentSong))
                 return;
 
-            Media media = new Media(libvlc, new Uri(CurrentSong));
-            _mediaPlayer.Play(media);
+            if (IsPlaying)
+            {
+                _mediaPlayer.Pause();
+            }
+            else
+            {
+                if (_mediaPlayer.Length == _mediaPlayer.Time)
+                {
+                    // If at the end of the song, move to the next song
+                    NextSong();
+                }
+                else
+                {
+                    // If not at the end, just resume
+                    _mediaPlayer.Play();
+                }
+            }
+            IsPlaying = !IsPlaying;
         }
 
         public void Pause()
@@ -124,10 +139,23 @@ namespace MusicPlayer.ViewModels
             _mediaPlayer.Pause();
         }
 
-        public void Next()
+        private void Play()
         {
-            _currentSongIndex = (_currentSongIndex + 1) % _songs.Count;
-            Play();
+            if (string.IsNullOrEmpty(CurrentSong))
+                return;
+
+            Media media = new Media(libvlc, new Uri(CurrentSong));
+            _mediaPlayer.Play(media);
+            IsPlaying = true;
+        }
+
+        public void NextSong()
+        {
+            if (_songs.Any())
+            {
+                _currentSongIndex = (_currentSongIndex + 1) % _songs.Count;
+                Play();
+            }
         }
     }
 }
