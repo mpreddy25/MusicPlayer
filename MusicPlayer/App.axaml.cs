@@ -24,7 +24,7 @@ namespace MusicPlayer
             }
             else if (ApplicationLifetime is ISingleViewApplicationLifetime singleViewPlatform)
             {
-                singleViewPlatform.MainView = new PlayListWindow
+                singleViewPlatform.MainView = new PlayerView
                 {
                     DataContext = new PlayListWindowViewModel()
                 };
