@@ -15,18 +15,22 @@
       <ExperimentalAcrylicBorder.Material>
         <ExperimentalAcrylicMaterial
             BackgroundSource="Digger"
-            TintColor="Black"
-            TintOpacity="1"
+            TintColor="White"
+            TintOpacity="10"
             MaterialOpacity="0.65" />
       </ExperimentalAcrylicBorder.Material>
     </ExperimentalAcrylicBorder>
     <Grid>
-      <Lottie Path="avares://MusicPlayer/Assets/Animation - 1705498212124.json" 
+      <Lottie x:Name="musicAnimation" Path="avares://MusicPlayer/Assets/Animation - 1705498212124.json" 
               Width="400"/>
+      
       <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom">
-        <Button Content="{Binding IsPlaying, Converter={StaticResource PlayPauseConverter}}"
-                Command="{Binding TogglePlayPauseCommand}" />
-        <Button Content="Next" Command="{Binding NextCommand}"/>
+        <Button Background="Transparent" Width="200" HorizontalAlignment="Center" VerticalAlignment="Center"
+                Command="{Binding TogglePlayPauseCommand}">
+          <Lottie x:Name="playPauseIcon" Path="avares://MusicPlayer/Assets/PlayAnimation.json"
+              Width="150"/>
+          </Button>
+        <!--<Button Content="Next" Command="{Binding NextCommand}"/>-->
       </StackPanel>
     </Grid>
   </Panel>

@@ -121,10 +121,14 @@ namespace MusicPlayer.ViewModels
 
             if (IsPlaying)
             {
-                _mediaPlayer.Pause();
+                Pause();
             }
             else
             {
+                if(_mediaPlayer.Length == -1)
+                {
+                    Play();
+                }
                 if (_mediaPlayer.Length == _mediaPlayer.Time)
                 {
                     // If at the end of the song, move to the next song
@@ -133,15 +137,16 @@ namespace MusicPlayer.ViewModels
                 else
                 {
                     // If not at the end, just resume
-                    _mediaPlayer.Play();
+                    Play();
                 }
             }
-            IsPlaying = !IsPlaying;
+            //IsPlaying = !IsPlaying;
         }
 
         public void Pause()
         {
             _mediaPlayer.Pause();
+            IsPlaying = false;
         }
 
         private void Play()

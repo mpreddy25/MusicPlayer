@@ -12,6 +12,10 @@
   
   <ItemGroup>
     <None Remove="Assets\Animation - 1705498212124.json" />
+    <None Remove="Assets\Animation - 1705500555968.json" />
+    <None Remove="Assets\PauseAnimation.json" />
+    <None Remove="Assets\Pause_Animation.json" />
+    <None Remove="Assets\PlayAnimation.json" />
     <None Remove="Assets\techno_penguin_lottie.json" />
     <None Remove="Songs\[iSongs.info] 01 - Alanati Ramachandrudu.mp3" />
     <None Remove="Songs\[iSongs.info] 09 - Priyathama.mp3" />
