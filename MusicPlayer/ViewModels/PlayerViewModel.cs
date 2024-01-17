@@ -21,7 +21,7 @@ using Avalonia.Platform;
 
 namespace MusicPlayer.ViewModels
 {
-    public class PlayListWindowViewModel : ViewModelBase
+    public class PlayerViewModel : ViewModelBase
     {
         private LibVLC libvlc;
         private MediaPlayer _mediaPlayer;
@@ -41,14 +41,11 @@ namespace MusicPlayer.ViewModels
             set => this.RaiseAndSetIfChanged(ref _isPlaying, value);
         }
 
-        //private MediaPlayer _mediaPlayer;
 
-        public ICommand PreviousCommand { get; }
         public ICommand TogglePlayPauseCommand { get; }
         public ICommand NextCommand { get; }
-        public ICommand ShowSongsListCommand { get; }
 
-        public PlayListWindowViewModel()
+        public PlayerViewModel()
         {
             libvlc = new LibVLC();
             _mediaPlayer = new MediaPlayer(libvlc);
@@ -61,7 +58,7 @@ namespace MusicPlayer.ViewModels
             directory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), "Songs");
 
             // Get the names of embedded resources (assuming they are in the root namespace)
-            var resourceNames = typeof(PlayListWindowViewModel).Assembly.GetManifestResourceNames();
+            var resourceNames = typeof(PlayerViewModel).Assembly.GetManifestResourceNames();
 
             // Filter the resource names to include only those in the "Songs" folder
             var songsResourceNames = resourceNames
@@ -86,7 +83,7 @@ namespace MusicPlayer.ViewModels
         {
             foreach (var resourceName in resourceNames)
             {
-                using (var stream = typeof(PlayListWindowViewModel).Assembly.GetManifestResourceStream(resourceName))
+                using (var stream = typeof(PlayerViewModel).Assembly.GetManifestResourceStream(resourceName))
                 {
                     if (stream != null)
                     {
