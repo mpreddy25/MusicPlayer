@@ -1,23 +1,12 @@
-﻿using MusicPlayer.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Reactive.Joins;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Net.Mime.MediaTypeNames;
-using Avalonia;
-using Avalonia.Media;
-using Avalonia.Controls;
-using Avalonia.Markup.Xaml;
-using System.Collections.ObjectModel;
 using System.IO;
 using System.Windows.Input;
 using ReactiveUI;
 using DynamicData;
 using LibVLCSharp.Shared;
-using Avalonia.Platform;
 
 namespace MusicPlayer.ViewModels
 {
