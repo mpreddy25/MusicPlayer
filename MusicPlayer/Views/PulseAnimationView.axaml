@@ -1,0 +1,19 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:lottie="clr-namespace:Avalonia.Skia.Lottie;assembly=Avalonia.Skia.Lottie"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="MusicPlayer.Views.PulseAnimationView">
+  <!--<lottie:AnimationView x:Name="PulseAnimationView"
+                        Width="200"
+                        Height="200"
+                        Source="Assets/music_animation.json"  AutoPlay="True"
+                        Loop="True" />-->
+  <!--<Lottie Name="Lottie"
+                Path="{Binding SelectedAsset.Path, FallbackValue={x:Null}}"
+                RepeatCount="-1" />-->
+  <!--<lottie:Lottie Path="Assets/music_animation.json" 
+                        Width="200"
+                        Height="200"/>-->
+</UserControl>

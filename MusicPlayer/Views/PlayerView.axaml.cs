@@ -1,4 +1,5 @@
 using Avalonia.Controls;
+using SkiaSharp.Skottie;
 
 namespace MusicPlayer.Views;
 

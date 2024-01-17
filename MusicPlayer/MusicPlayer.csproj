@@ -11,6 +11,8 @@
   </ItemGroup>
   
   <ItemGroup>
+    <None Remove="Assets\Animation - 1705498212124.json" />
+    <None Remove="Assets\techno_penguin_lottie.json" />
     <None Remove="Songs\[iSongs.info] 01 - Alanati Ramachandrudu.mp3" />
     <None Remove="Songs\[iSongs.info] 09 - Priyathama.mp3" />
   </ItemGroup>
@@ -30,12 +32,14 @@
 
   <ItemGroup>
     <PackageReference Include="Avalonia" Version="$(AvaloniaVersion)" />
+    <PackageReference Include="Avalonia.Skia.Lottie" Version="11.0.0" />
     <PackageReference Include="Avalonia.Themes.Fluent" Version="$(AvaloniaVersion)" />
     <PackageReference Include="Avalonia.Fonts.Inter" Version="$(AvaloniaVersion)" />
     <PackageReference Include="Avalonia.ReactiveUI" Version="$(AvaloniaVersion)" />
     <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
     <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="$(AvaloniaVersion)" />
     <PackageReference Include="LibVLCSharp.Avalonia" Version="3.8.2" />
+    <PackageReference Include="SkiaSharp" Version="2.88.7" />
     <PackageReference Condition="$([MSBuild]::IsOsPlatform('Windows'))" Include="VideoLAN.LibVLC.Windows" Version="3.0.11" />
   </ItemGroup>
 </Project>

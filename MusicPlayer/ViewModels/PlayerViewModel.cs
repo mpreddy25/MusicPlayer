@@ -7,6 +7,7 @@ using System.Windows.Input;
 using ReactiveUI;
 using DynamicData;
 using LibVLCSharp.Shared;
+using Avalonia.Platform;
 
 namespace MusicPlayer.ViewModels
 {
@@ -17,11 +18,20 @@ namespace MusicPlayer.ViewModels
         private ObservableCollection<string> _songs;
         private int _currentSongIndex;
         private bool _isPlaying;
+        private string _selectedAsset;
+        //private readonly ObservableCollection<AssetViewModel> _assets;
+
+        //[ObservableProperty] private AssetViewModel? _selectedAsset;
 
         public ObservableCollection<string> Songs
         {
             get => _songs;
             set => this.RaiseAndSetIfChanged(ref _songs, value);
+        }
+        public string SelectedAsset
+        {
+            get => _selectedAsset;
+            set => this.RaiseAndSetIfChanged(ref _selectedAsset, value);
         }
 
         public bool IsPlaying
@@ -60,6 +70,15 @@ namespace MusicPlayer.ViewModels
 
             TogglePlayPauseCommand = ReactiveCommand.Create(TogglePlayPause);
             NextCommand = ReactiveCommand.Create(NextSong);
+
+            var assets = AssetLoader
+            .GetAssets(new Uri("avares://MusicPlayer/Assets"), new Uri("avares://MusicPlayer/"))
+            .Where(x => x.AbsolutePath.EndsWith(".json", StringComparison.OrdinalIgnoreCase))
+            .Select(x => x.AbsoluteUri);
+
+            //_assets = new ObservableCollection<AssetViewModel>(assets);
+
+            _selectedAsset = assets.FirstOrDefault();
         }
 
         private void OnMediaEnded(object sender, EventArgs e)

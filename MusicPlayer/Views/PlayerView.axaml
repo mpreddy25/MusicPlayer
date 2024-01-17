@@ -3,6 +3,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="clr-namespace:MusicPlayer.ViewModels"
+             xmlns:skia="clr-namespace:SkiaSharp"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              xmlns:views="clr-namespace:MusicPlayer.Views"
              x:Class="MusicPlayer.Views.PlayerView"
@@ -20,7 +21,8 @@
       </ExperimentalAcrylicBorder.Material>
     </ExperimentalAcrylicBorder>
     <Grid>
-      <Image Source="" />
+      <Lottie Path="avares://MusicPlayer/Assets/Animation - 1705498212124.json" 
+              Width="400"/>
       <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom">
         <Button Content="{Binding IsPlaying, Converter={StaticResource PlayPauseConverter}}"
                 Command="{Binding TogglePlayPauseCommand}" />
